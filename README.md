@@ -1,8 +1,5 @@
 # Autonomous Multi-Goal Delivery Robot
 
-COMPSCI-603 Robotics  
-Smitha Maganti · Khushei Meghana Meda · Akarsh Gupta · Skanda Chandrashekar
-
 An indoor delivery robot that maps a space, visits N drop-off locations in an efficient order, and replans when something unexpected blocks its path.
 
 This is a proof-of-concept inspired by hospital delivery robots (for example Aethon TUG): nurses spend a lot of time moving medications and supplies between rooms. The robot is meant to handle that kind of multi-stop indoor route on a mapped floor.
