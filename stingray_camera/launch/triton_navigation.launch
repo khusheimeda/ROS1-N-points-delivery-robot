@@ -1,0 +1,21 @@
+<launch>
+  <node name="astar_planner" pkg="stingray_camera" type="astar_planner.py" output="screen">
+    <param name="robot_radius"       value="0.23"/>
+    <param name="obstacle_threshold" value="50"/>
+  </node>
+
+  <!-- Holonomic pure-pursuit controller (replaces RTR for omni Triton) -->
+  <node name="omni_controller" pkg="stingray_camera" type="omni_controller.py" output="screen">
+    <param name="lookahead_dist"    value="0.40"/>
+    <param name="max_linear"        value="0.20"/>
+    <param name="max_angular"       value="1.00"/>
+    <param name="kp_linear"         value="1.0"/>
+    <param name="kp_angular"        value="1.5"/>
+    <param name="goal_tolerance"    value="0.15"/>
+    <param name="slow_radius"       value="0.40"/>
+    <param name="heading_mode"      value="hold"/>
+
+    <!-- Connect controller's input to A*'s output, and republish on the
+         topic obstacle_monitor/delivery_manager already use -->
+  </node>
+</launch>

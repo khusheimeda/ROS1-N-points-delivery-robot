@@ -1,0 +1,24 @@
+<launch>
+  <!-- For D3: full pipeline. Run alongside triton_amcl.launch -->
+  <include file="$(find stingray_camera)/launch/triton_navigation.launch"/>
+
+  <node name="led_controller" pkg="stingray_camera" type="led_controller.py" output="screen"/>
+
+  <node name="obstacle_monitor" pkg="stingray_camera" type="obstacle_monitor.py" output="screen">
+    <param name="danger_distance" value="0.8"/>
+    <param name="path_width"      value="0.35"/>
+    <param name="inflate_radius"  value="0.10"/>  <!-- was 0.20 — shrinks dynamic obstacle blob -->
+    <param name="lookahead_wps"   value="12"/>
+  </node>
+
+  <!-- EDIT GOALS BELOW to match your actual map coordinates -->
+  <node name="delivery_manager" pkg="stingray_camera" type="delivery_manager.py" output="screen">
+    <param name="ordering_strategy" value="greedy"/>
+    <rosparam param="goals">
+      - {x: -0.782, y: 0.671, name: "Room1"}
+      - {x: -2.21,   y: -1.97, name: "Room2"}
+      - {x: -4.51,   y: -0.974, name: "Room3"}
+      - {x: -4.25,   y: 1.64, name: "Room4"}
+    </rosparam>
+  </node>
+</launch>
